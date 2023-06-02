@@ -2,6 +2,10 @@ import styled, { keyframes } from "styled-components";
 
 const Wrapper = styled.div`
   display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
 `;
 
 const animation = keyframes`
@@ -19,6 +23,10 @@ border-radius: 0px;
 }
 `;
 
+const Emoji = styled.span`
+  font-size: 36px;
+`;
+
 const Box = styled.div`
   width: 200px;
   height: 200px;
@@ -27,14 +35,8 @@ const Box = styled.div`
   justify-content: center;
   align-items: center;
   animation: ${animation} 1s linear infinite;
-  span {
-    font-size: 36px;
-    &:hover {
-      font: 76px;
-    }
-    &:active {
-      opacity: 0;
-    }
+  ${Emoji}:hover {
+    font-size: 98px;
   }
 `;
 
@@ -42,8 +44,9 @@ function App() {
   return (
     <Wrapper>
       <Box>
-        <span>웃는이모지</span>
+        <Emoji as="p">웃는이모지</Emoji>
       </Box>
+      <Emoji as="p">웃는이모지</Emoji>
     </Wrapper>
   );
 }
