@@ -1,10 +1,7 @@
 import styled, { keyframes } from "styled-components";
 
 const Title = styled.h1`
-  color: tomato;
-  &:hover {
-    color: teal;
-  }
+  color: ${(props) => props.theme.textColor};
 `;
 
 const Wrapper = styled.div`
@@ -13,9 +10,7 @@ const Wrapper = styled.div`
   height: 100vh;
   justify-content: center;
   align-items: center;
-  ${Title}:hover {
-    font-size: 98px;
-  }
+  background-color: ${(props) => props.theme.backgroundColor};
 `;
 
 function App() {
