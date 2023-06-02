@@ -1,21 +1,50 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-const Father = styled.div`
+const Wrapper = styled.div`
   display: flex;
 `;
 
-const Input = styled.input.attrs({ required: true })`
+const animation = keyframes`
+ 0%{
+transform: rotate(0deg);
+border-radius: 0px;
+ }
+ 50%{
+  transform: rotate(360deg);
+  border-radius: 100px;
+}
+100%{
+  transform: rotate(0deg);
+border-radius: 0px;
+}
+`;
+
+const Box = styled.div`
+  width: 200px;
+  height: 200px;
   background-color: tomato;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: ${animation} 1s linear infinite;
+  span {
+    font-size: 36px;
+    &:hover {
+      font: 76px;
+    }
+    &:active {
+      opacity: 0;
+    }
+  }
 `;
 
 function App() {
   return (
-    <Father as="header">
-      <Input />
-      <Input />
-      <Input />
-      <Input />
-    </Father>
+    <Wrapper>
+      <Box>
+        <span>웃는이모지</span>
+      </Box>
+    </Wrapper>
   );
 }
 
