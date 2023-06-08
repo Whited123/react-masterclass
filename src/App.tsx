@@ -2,12 +2,13 @@ import styled from "styled-components";
 import {
   motion,
   useMotionValue,
-  useMotionValueEvent,
   useTransform,
+  useScroll,
+  useMotionValueEvent,
 } from "framer-motion";
 
-const Wrapper = styled.div`
-  height: 100vh;
+const Wrapper = styled(motion.div)`
+  height: 200vh;
   width: 100vw;
   display: flex;
   align-items: center;
@@ -24,10 +25,20 @@ const Box = styled(motion.div)`
 
 function App() {
   const x = useMotionValue(0);
-  const scale = useTransform(x, [-944, 0, 975], [2, 1, 0]);
+  const rotateZ = useTransform(x, [-944, 975], [-360, 360]);
+  const gradient = useTransform(
+    x,
+    [-944, 975],
+    [
+      "linear-gradient(135deg, rgb(0, 210, 238), rgb(0, 83, 238))",
+      "linear-gradient(135deg, rgb(0, 238, 155), rgb(238, 178, 0))",
+    ]
+  );
+  const { scrollYProgress } = useScroll();
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 5]);
   return (
-    <Wrapper>
-      <Box style={{ x, scale }} drag="x" dragSnapToOrigin />
+    <Wrapper style={{ background: gradient }}>
+      <Box style={{ x, rotateZ, scale }} drag="x" dragSnapToOrigin />
     </Wrapper>
   );
 }
