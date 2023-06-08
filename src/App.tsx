@@ -1,5 +1,10 @@
 import styled from "styled-components";
-import { motion, useMotionValue, useMotionValueEvent } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useMotionValueEvent,
+  useTransform,
+} from "framer-motion";
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -19,13 +24,10 @@ const Box = styled(motion.div)`
 
 function App() {
   const x = useMotionValue(0);
-  useMotionValueEvent(x, "change", (x) => {
-    console.log(x);
-  });
+  const scale = useTransform(x, [-944, 0, 975], [2, 1, 0]);
   return (
     <Wrapper>
-      <button onClick={() => x.set(200)}>날 눌러 봐.</button>
-      <Box style={{ x }} drag="x" dragSnapToOrigin />
+      <Box style={{ x, scale }} drag="x" dragSnapToOrigin />
     </Wrapper>
   );
 }
